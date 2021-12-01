@@ -18,6 +18,23 @@ public class TestController {
 	
 	private final static Logger logger= LoggerFactory.getLogger(TestController.class);
 	
+	public TestController(MeterRegistry registro) {
+		this.counterCel = Counter.builder("invocaciones.Celsius").description("Invocaciones totales").register(registro);
+		this.counterFar = Counter.builder("invocaciones.Fahrenheit").description("Invocaciones totales").register(registro);
+	}
+	
+	@GetMapping(path="/testCelsius")
+	public String testCelsius() {
+		counterCel.increment();
+		return "Celsius";
+	}
+	
+	@GetMapping(path="/testFarhen")
+	public String holaMundo() {
+		counterFar.increment();
+		return "Fahrenheit";
+	}
+	
 	@GetMapping(path="/celAFar/{celsius}")
 	public static float celsiusAFahrenheit(@PathVariable float celsius) {
 		counterCel.increment();
