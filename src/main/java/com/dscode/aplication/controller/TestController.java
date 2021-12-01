@@ -19,8 +19,8 @@ public class TestController {
 	private final static Logger logger= LoggerFactory.getLogger(TestController.class);
 	
 	public TestController(MeterRegistry registro) {
-		this.counterCel = Counter.builder("invocaciones.Celsius").description("Invocaciones totales").register(registro);
-		this.counterFar = Counter.builder("invocaciones.Fahrenheit").description("Invocaciones totales").register(registro);
+		TestController.counterCel = Counter.builder("invocaciones.Celsius").description("Invocaciones totales").register(registro);
+		TestController.counterFar = Counter.builder("invocaciones.Fahrenheit").description("Invocaciones totales").register(registro);
 	}
 	
 	@GetMapping(path="/testCelsius")
